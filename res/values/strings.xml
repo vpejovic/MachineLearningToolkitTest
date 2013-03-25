@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MachineLearningToolkitTest</string>
+    <string name="choose_classifier_text">Choose classifier type:</string>
+
+    <string name="select_classifier_tab">Select classifier</string>
+    <string name="train_classifier_tab">Train classifier</string>
+    <string name="classify_instance_tab">Classify instance</string>
+    <string name="features_title_text">Features:</string>
+    <string name="feature_add_button">Add feature</string>
+    <string name="classifier_add_button">Finish</string>
+    
+    <string name="train_classifier_description">This will train the classifier based on the accelerometer readings.</string>
+    <string name="train_classifier_button">Train</string>
+    
+    <string name="classify_instance_description">This will classify the current sample of your accelerometer readings.</string>
+    <string name="classify_instance_button">Classify</string>
+    
+    <string-array name="classifiers_list">
+        <item>Naive Bayes</item>
+        <item>Bayes net</item>
+        <item>Ada Boost</item>
+        <item>Hoeffding Tree</item>        
+    </string-array>
+    
+</resources>

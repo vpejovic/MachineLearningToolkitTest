@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <RelativeLayout
+        android:id="@+id/registrationRelativeLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        
+
+    <TextView
+    	android:id="@+id/choose_classifier_text"
+        android:textSize="14sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/choose_classifier_text"        
+        android:layout_alignParentTop="true"      
+	/>
+
+    <Spinner
+        android:id="@+id/choose_classifier_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/choose_classifier_text"         
+        />
+    
+    <View
+        android:id="@+id/splitter1"
+    	android:layout_width="fill_parent"
+    	android:layout_height="1dp"
+    	android:background="@android:color/darker_gray"
+    	android:layout_below="@id/choose_classifier_spinner"/>
+    
+    <TextView
+    	android:id="@+id/features_title_text"
+        android:textSize="14sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/features_title_text"        
+        android:layout_below="@id/splitter1"         
+        
+	/>
+
+    <ListView
+        android:id="@+id/features_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/features_title_text"     
+        >
+    </ListView>
+    
+    
+    <Button
+        android:id="@+id/feature_add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/feature_add_button"
+        android:layout_below="@id/features_list"     
+        />
+    <View
+        android:id="@+id/splitter2"
+    	android:layout_width="fill_parent"
+    	android:layout_height="1dp"
+    	android:background="@android:color/darker_gray"
+    	android:layout_below="@id/feature_add_button"/>
+    
+   	<Button
+        android:id="@+id/classifier_add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/classifier_add_button"
+        android:layout_below="@id/splitter2"
+        />
+    
+    </RelativeLayout>
+    
+</ScrollView>

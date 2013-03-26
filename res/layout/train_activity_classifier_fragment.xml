@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/train_activity_classifier_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/train_activity_classifier_description" />
+
+    <RadioGroup
+        android:id="@+id/activity_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"  >
+
+        <RadioButton
+            android:id="@+id/activity_sit_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/activity_sit" />
+
+        <RadioButton
+            android:id="@+id/activity_stand_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_stand" />
+
+        <RadioButton
+            android:id="@+id/activity_walk_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_walk" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/train_classifier_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/train_classifier_button" />
+
+</LinearLayout>

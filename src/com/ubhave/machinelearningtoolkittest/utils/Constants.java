@@ -2,6 +2,6 @@ package com.ubhave.machinelearningtoolkittest.utils;
 
 public class Constants {
 
-	public static final String CLASSIFIER_JSON_FILE = null;
+	public static final String CLASSIFIER_MANAGER_FILE = "mlmanager.dat";
 
 }

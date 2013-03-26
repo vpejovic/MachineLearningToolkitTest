@@ -12,8 +12,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 
 public class SelectClassifierFragment extends Fragment {
 	
@@ -23,13 +26,31 @@ public class SelectClassifierFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		d_view = inflater.inflate(R.layout.select_classifier_fragment, container, false);
 		
-		ListView lv = initListView();		
-		setListOnClick(lv);
+		//ListView lv = initListView();		
+		//setListOnClick(lv);
 		
 		return d_view;
 	}
 	
-	protected ListView initListView()
+	public void selectClassifier(View view){
+		RadioGroup classifierButton = (RadioGroup) d_view.findViewById(R.id.select_classifier_radioGroup);
+		if (classifierButton.getCheckedRadioButtonId() == -1){
+			// TODO: There is no setError method for radio button.
+			Toast.makeText(MLTestApplication.getContext(), "Please select a classifier", Toast.LENGTH_LONG);
+		}
+		else {
+			RadioButton selectedClassifier = (RadioButton) classifierButton.findViewById(classifierButton.getCheckedRadioButtonId());
+			String type = selectedClassifier.getText().toString();
+			if (type.equalsIgnoreCase("naive bayes")) {
+				//createActivityClassifier();
+			}
+			else if (type.equalsIgnoreCase("bayes net")){
+				
+			}
+		}
+	}
+	
+	/*protected ListView initListView()
 	{
 		//loadData();
 		ArrayList<String> availableClassifiers = new ArrayList<String>();
@@ -44,7 +65,6 @@ public class SelectClassifierFragment extends Fragment {
 		return lv;
 	}
 	
-	/*
 	protected void loadData()
 	{
 		ArrayList<String> details = question.getDetails();
@@ -56,7 +76,6 @@ public class SelectClassifierFragment extends Fragment {
 			data.add(map);
 		}
 	}
-	*/
 	
 	protected void setListOnClick(ListView lv) {		
 		
@@ -65,9 +84,12 @@ public class SelectClassifierFragment extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				
+				
 				//TODO: Spawn new activity depending on the selected classifier.
 				// 
 			}
 		});
 	}
+	*/
+	
 }

@@ -7,12 +7,19 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.ubhave.machinelearningtoolkittest.utils.Constants;
 import com.ubhave.mltoolkit.MachineLearningManager;
+import com.ubhave.mltoolkit.classifier.Classifier;
 import com.ubhave.mltoolkit.utils.Feature;
+import com.ubhave.mltoolkit.utils.Instance;
 import com.ubhave.mltoolkit.utils.MLException;
 import com.ubhave.mltoolkit.utils.Signature;
+import com.ubhave.mltoolkit.utils.Value;
+import com.ubhave.sensormanager.data.SensorData;
+import com.ubhave.sensormanager.data.pullsensor.AccelerometerData;
 
 public class MLService extends Service {
 	
@@ -46,6 +53,7 @@ public class MLService extends Service {
 					{
 						d_manager = MachineLearningManager.getMLManager(d_service);
 						d_activeClassifiers = new HashMap<String, Integer>();
+						createActivityClassifier();
 					}
 					catch (MLException e){
 						e.printStackTrace();
@@ -98,7 +106,7 @@ public class MLService extends Service {
 			features.add(x_axis);
 			features.add(y_axis);
 			features.add(z_axis);
-			
+			features.add(activity);
 			Signature signature = new Signature(features, 3);
 			int classifierID = d_manager.addClassifier(com.ubhave.mltoolkit.utils.Constants.TYPE_NAIVE_BAYES, signature);
 			d_activeClassifiers.put("activity", classifierID);		
@@ -108,6 +116,71 @@ public class MLService extends Service {
 			e.printStackTrace();
 		}
 	}
+	
+	public void trainActivityClassifier(SensorData a_data, String a_label){
+		Classifier activityClassifier = d_manager.getClassifier(d_activeClassifiers.get("activity"));
+		ArrayList<Instance> instances;
+		
+		if (a_data != null)
+		{
+			ArrayList<float[]> readings = ((AccelerometerData)a_data).getSensorReadings();
+
+			instances = new ArrayList<Instance>();
+									
+			for (float[] sample : readings) {
+
+				Value xValue = new Value(sample[0], Value.NUMERIC_VALUE);
+				Value yValue = new Value(sample[1], Value.NUMERIC_VALUE);
+				Value zValue = new Value(sample[2], Value.NUMERIC_VALUE);
+				Value stateValue = new Value(a_label, Value.NOMINAL_VALUE);
+				
+				ArrayList<Value> instanceValues = new ArrayList<Value>();
+				instanceValues.add(xValue);
+				instanceValues.add(yValue);
+				instanceValues.add(zValue);
+				instanceValues.add(stateValue);
+				
+				Instance instance = new Instance(instanceValues);
+				instances.add(instance);
+			}
+			
+			try {
+				activityClassifier.train(instances);
+			} catch (MLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void classifyActivityInstance(SensorData a_data) {
+		
+		Classifier activityClassifier = d_manager.getClassifier(d_activeClassifiers.get("activity"));
+		
+		ArrayList<Value> values = new ArrayList<Value>();
+		
+		if (a_data != null)
+		{
+			ArrayList<float[]> readings = ((AccelerometerData)a_data).getSensorReadings();
+												
+			for (float[] sample : readings) {
+
+				Value xValue = new Value(sample[0], Value.NUMERIC_VALUE);
+				Value yValue = new Value(sample[1], Value.NUMERIC_VALUE);
+				Value zValue = new Value(sample[2], Value.NUMERIC_VALUE);
+				
+				ArrayList<Value> instanceValues = new ArrayList<Value>();
+				instanceValues.add(xValue);
+				instanceValues.add(yValue);
+				instanceValues.add(zValue);
+				
+				Instance instance = new Instance(instanceValues);
+				
+				values.add(activityClassifier.classify(instance));				
+			}			
+		}		
+	}
+	
 	
 	public void onDestroy() {
 		// TODO: here we need to call MachineLearning<Manager

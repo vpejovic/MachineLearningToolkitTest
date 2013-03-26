@@ -8,9 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-public class TrainClassifierFragment extends Fragment {
+public class TrainActivityClassifierFragment extends Fragment {
+	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.train_classifier_fragment, container, false);
+		View view = inflater.inflate(R.layout.train_activity_classifier_fragment, container, false);
 		return view;
 	}
+	
+	
 }

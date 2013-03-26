@@ -11,11 +11,29 @@
     <string name="feature_add_button">Add feature</string>
     <string name="classifier_add_button">Finish</string>
     
-    <string name="train_classifier_description">This will train the classifier based on the accelerometer readings.</string>
+    <string name="activity_walk">Walking</string>
+    <string name="activity_sit">Sitting</string>
+    <string name="activity_stand">Standing</string>    
+    <string name="train_activity_classifier_description">This will train the classifier based on the accelerometer readings. Please select your current activity and press the button.</string>
     <string name="train_classifier_button">Train</string>
     
-    <string name="classify_instance_description">This will classify the current sample of your accelerometer readings.</string>
+    <string name="classify_activity_instance_description">This will classify the current sample of your accelerometer readings.</string>
+    <string name="classify_activity_result_before">Click on the button to get your activity class.</string>    
+    <string name="classify_activity_result_sensing">Accelerometer sensing in progress&#8230;</string>
+    <string name="classify_activity_result_sensed">Accelerometer sensing completed.</string>
+    <string name="classify_activity_result_error">Error sensing the accelerometer.</string>
+    
+    <string name="classify_activity_result_classifying">Classifying activity&#8230;</string>    
+    
     <string name="classify_instance_button">Classify</string>
+    
+    
+    
+    <string name="select_classifier_naiveBayes">Naive bayes</string>
+    <string name="select_classifier_bayesNet">Bayes net</string>
+    <string name="select_classifier_activity">Activity classifier</string>
+    <string name="select_classifier_location">Location classifier</string>    
+    <string name="select_classifier_button">Select this classifier</string>
     
     <string-array name="classifiers_list">
         <item>Naive Bayes</item>

@@ -4,10 +4,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <ListView
-        android:id="@+id/select_classifier_list"
-        android:layout_width="match_parent"
+    <RadioGroup
+        android:id="@+id/select_classifier_radioGroup"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
-    </ListView>
+
+        <RadioButton
+            android:id="@+id/select_classifier_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/select_classifier_activity"/>
+
+        <RadioButton
+            android:id="@+id/select_classifier_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_classifier_location" />
+
+	</RadioGroup>
+
+    <Button
+        android:id="@+id/select_classifier_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="selectClassifier"
+        android:text="@string/select_classifier_button" />
 
 </LinearLayout>

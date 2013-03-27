@@ -1,6 +1,10 @@
 package com.ubhave.machinelearningtoolkittest;
 
+import java.util.ArrayList;
+
 import com.ubhave.machinelearningtoolkittest.sense.SampleOnceTask;
+import com.ubhave.machinelearningtoolkittest.utils.Constants;
+import com.ubhave.mltoolkit.utils.Value;
 import com.ubhave.sensormanager.ESException;
 import com.ubhave.sensormanager.data.SensorData;
 import com.ubhave.sensormanager.sensors.SensorUtils;
@@ -62,31 +66,29 @@ public class ClassifyActivityInstanceFragment extends Fragment{
 	}
 	
 	private void classifyAccelerometer (SensorData a_data) {
-		try {
-			new SampleOnceTask(SensorUtils.SENSOR_TYPE_ACCELEROMETER)
-			{		
-				@Override
-				protected void onProgressUpdate(Void[] values) {
-					TextView result = (TextView) getView().findViewById(R.id.classify_activity_result);
-					result.setText(R.string.classify_activity_result_sensing);
-				};
-				@Override
-				public void onPostExecute(SensorData a_data){
-					
-					TextView result = (TextView) getView().findViewById(R.id.classify_activity_result);
-					
-					if (a_data != null) {
-						result.setText(R.string.classify_activity_result_sensed);
+		new ClassifyTask()
+		{		
+			@Override
+			protected void onProgressUpdate(Void[] values) {
+				TextView result = (TextView) getView().findViewById(R.id.classify_activity_result);
+				result.setText(R.string.classify_activity_result_classifying);
+			};
+			@Override
+			public void onPostExecute(ArrayList<Value> a_values){
+				
+				TextView result = (TextView) getView().findViewById(R.id.classify_activity_result);
+				
+				if (a_values != null) {
+					String out = "";
+					for (Value value : a_values) {
+						out += value.getValue().toString() + ", ";
 					}
-					else {
-						result.setText(R.string.classify_activity_result_error);
-					}
+					result.setText(out);
 				}
-			}.execute();
-		} catch (ESException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
+				else {
+					result.setText(R.string.classify_activity_result_error);
+				}
+			}
+		}.execute(Constants.CLASSIFIER_ACTIVITY, a_data);		
 	}
-	
 }

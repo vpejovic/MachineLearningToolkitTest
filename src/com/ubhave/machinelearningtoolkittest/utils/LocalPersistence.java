@@ -10,6 +10,7 @@ import java.io.ObjectOutputStream;
 import android.app.Activity;
 import android.content.Context;
 
+// DEPRECATED
 public class LocalPersistence {
 
 	public static void witeObjectToFile(Context context, Object object, String filename) {

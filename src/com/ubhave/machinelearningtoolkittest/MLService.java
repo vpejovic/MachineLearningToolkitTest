@@ -27,8 +27,6 @@ public class MLService extends Service {
 	
 	private MachineLearningManager d_manager;
 	
-	private HashMap<String, Integer> d_activeClassifiers;
-	
 	private static final Object lock = new Object();
 
 	private static final String TAG = "MLService";
@@ -51,8 +49,7 @@ public class MLService extends Service {
 					d_service = this;
 					try
 					{
-						d_manager = MachineLearningManager.getMLManager(d_service);
-						d_activeClassifiers = new HashMap<String, Integer>();
+						d_manager = MachineLearningManager.getMLManager(d_service);					
 						createActivityClassifier();
 					}
 					catch (MLException e){
@@ -100,7 +97,7 @@ public class MLService extends Service {
 			activityValues.add("Sitting");
 			activityValues.add("Standing");
 			activityValues.add("Walking");
-			Feature activity = new Feature("activity", Feature.NOMINAL, activityValues);
+			Feature activity = new Feature("Activity", Feature.NOMINAL, activityValues);
 			
 			ArrayList<Feature> features = new ArrayList<Feature>();		
 			features.add(x_axis);
@@ -108,9 +105,7 @@ public class MLService extends Service {
 			features.add(z_axis);
 			features.add(activity);
 			Signature signature = new Signature(features, 3);
-			int classifierID = d_manager.addClassifier(com.ubhave.mltoolkit.utils.Constants.TYPE_NAIVE_BAYES, signature);
-			d_activeClassifiers.put("activity", classifierID);		
-			
+		    d_manager.addClassifier(com.ubhave.mltoolkit.utils.Constants.TYPE_NAIVE_BAYES, signature, "activity");			
 		} catch (MLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -118,7 +113,7 @@ public class MLService extends Service {
 	}
 	
 	public void trainActivityClassifier(SensorData a_data, String a_label){
-		Classifier activityClassifier = d_manager.getClassifier(d_activeClassifiers.get("activity"));
+		Classifier activityClassifier = d_manager.getClassifier("activity");
 		ArrayList<Instance> instances;
 		
 		if (a_data != null)
@@ -155,7 +150,7 @@ public class MLService extends Service {
 	
 	public void classifyActivityInstance(SensorData a_data) {
 		
-		Classifier activityClassifier = d_manager.getClassifier(d_activeClassifiers.get("activity"));
+		Classifier activityClassifier = d_manager.getClassifier("activity");
 		
 		ArrayList<Value> values = new ArrayList<Value>();
 		
@@ -183,8 +178,7 @@ public class MLService extends Service {
 	
 	
 	public void onDestroy() {
-		// TODO: here we need to call MachineLearning<Manager
-		// and make sure that all classifiers are saved.
+		d_manager.saveToPersistent();
 	}
 
 	@Override

@@ -12,21 +12,22 @@ import com.ubhave.mltoolkit.utils.Signature;
 import com.ubhave.mltoolkit.utils.Value;
 import com.ubhave.sensormanager.data.SensorData;
 import com.ubhave.sensormanager.data.pullsensor.AccelerometerData;
+import com.ubhave.sensormanager.data.pullsensor.LocationData;
 
+import android.location.Location;
 import android.os.AsyncTask;
+import android.util.Log;
 
 public class TrainTask extends AsyncTask<Object, Void, Boolean> {
+
+	private static final String TAG = "TrainTask";
 
 	@Override
 	protected Boolean doInBackground(Object... params) {
 		
 		String classifierName = (String) params[0];
-		
 		SensorData data = (SensorData) params[1];
-		
 		Value label = (Value) params[2]; 
-		
-		ArrayList<Value> values = new ArrayList<Value>();
 
 		MachineLearningManager manager;
 		
@@ -69,7 +70,27 @@ public class TrainTask extends AsyncTask<Object, Void, Boolean> {
 				}
 				
 				if (classifierName == Constants.CLASSIFIER_LOCATION) {
-					// TODO: location classifier should be used here
+					Location location = ((LocationData)data).getLocation();					
+					
+					if (location == null) return false;
+					
+					Log.d(TAG, "location: "+location.toString());
+					
+					ArrayList<Instance> instances = new ArrayList<Instance>();
+					
+					// TODO: check if the location was found successfully
+					
+					Value latitude = new Value(location.getLatitude(), Value.NUMERIC_VALUE);
+					Value longitude = new Value(location.getLongitude(), Value.NUMERIC_VALUE);
+					ArrayList<Value> instanceValues = new ArrayList<Value>();
+					instanceValues.add(latitude);
+					instanceValues.add(longitude);
+					Instance instance = new Instance(instanceValues);
+					instances.add(instance);
+					
+					classifier.train(instances);
+					
+					outcome = true;
 				}
 				
 			}

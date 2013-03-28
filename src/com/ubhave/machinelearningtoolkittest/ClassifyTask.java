@@ -10,7 +10,9 @@ import com.ubhave.mltoolkit.utils.MLException;
 import com.ubhave.mltoolkit.utils.Value;
 import com.ubhave.sensormanager.data.SensorData;
 import com.ubhave.sensormanager.data.pullsensor.AccelerometerData;
+import com.ubhave.sensormanager.data.pullsensor.LocationData;
 
+import android.location.Location;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -32,7 +34,7 @@ public class ClassifyTask extends AsyncTask<Object, Void, ArrayList<Value>> {
 		try {
 			manager = MachineLearningManager.getMLManager(MLTestApplication.getContext());
 		
-			Classifier activityClassifier = manager.getClassifier(classifierName);	
+			Classifier classifier = manager.getClassifier(classifierName);	
 			
 			
 			if (data != null)
@@ -57,12 +59,30 @@ public class ClassifyTask extends AsyncTask<Object, Void, ArrayList<Value>> {
 						
 						Log.d(TAG, "Instance size: "+instanceValues.size());
 						Log.d(TAG, "Values: "+sample[0]+" "+sample[1]+" "+sample[2]);
-						values.add(activityClassifier.classify(instance));				
+						values.add(classifier.classify(instance));				
 					}			
 				}
 				
 				if (classifierName == Constants.CLASSIFIER_LOCATION) {
-					// TODO: location classifier should be used here
+					
+					Location location = ((LocationData)data).getLocation();					
+					
+					ArrayList<Instance> instances = new ArrayList<Instance>();
+					
+					if (location == null) return null;
+					
+					Log.d(TAG, "location: "+location.toString());
+					
+					Value latitude = new Value(location.getLatitude(), Value.NUMERIC_VALUE);
+					Value longitude = new Value(location.getLongitude(), Value.NUMERIC_VALUE);
+					ArrayList<Value> instanceValues = new ArrayList<Value>();
+					instanceValues.add(latitude);
+					instanceValues.add(longitude);
+					Instance instance = new Instance(instanceValues);
+					instances.add(instance);
+					
+					values.add(classifier.classify(instance));
+					
 				}
 				
 			}		

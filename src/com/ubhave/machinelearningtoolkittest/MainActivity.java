@@ -1,5 +1,7 @@
 package com.ubhave.machinelearningtoolkittest;
 
+import com.ubhave.machinelearningtoolkittest.utils.Constants;
+
 import android.os.Bundle;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
@@ -20,18 +22,16 @@ import android.content.Intent;
  */
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 
-	private static final String TAG = "MLService";
+	private static final String TAG = "MainActivity";
 
 	public static String ACTIVE_TAB = "activeTab";
+	
+	private static String activeClassifier = Constants.CLASSIFIER_ACTIVITY;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		//Fragment fragment = new QuestionnaireFragment();
-		//getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
-		//MLTestApplication.getContext().startService(new Intent(MLTestApplication.getContext(), MLService.class));
 		
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -41,6 +41,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		actionBar.addTab(actionBar.newTab().setText(R.string.classify_instance_tab).setTabListener(this));
 	}
 
+	public void setClassifierType(String a_type){
+		activeClassifier = a_type;
+	}
+	
 	@Override
 	public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
 		// TODO Auto-generated method stub
@@ -66,24 +70,21 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 		Fragment fragment = null;
 		if (tab.getPosition() == 0) fragment = new SelectClassifierFragment();			
-//		if (tab.getPosition() == 0) fragment = new CreateClassifierFragment();			
 		else if (tab.getPosition() == 1) {
-			//RadioGroup classifierGroup = (RadioGroup)findViewById(R.id.select_classifier_radioGroup);
-			//if (classifierGroup.getCheckedRadioButtonId() == R.id.select_classifier_activity){
+			if (activeClassifier.equals(Constants.CLASSIFIER_ACTIVITY)){
 				fragment = new TrainActivityClassifierFragment();
-			//}
-			//else {
-				//TODO: Location fragment 
-			//}
+			}
+			else {
+				fragment = new TrainLocationClassifierFragment();
+			}
 		}			
 		else if (tab.getPosition() == 2) {
-			//RadioGroup classifierGroup = (RadioGroup)findViewById(R.id.select_classifier_radioGroup);			
-			//if (classifierGroup.getCheckedRadioButtonId() == R.id.select_classifier_activity){
+			if (activeClassifier.equals(Constants.CLASSIFIER_ACTIVITY)){
 				fragment = new ClassifyActivityInstanceFragment();
-			//}
-			//else {
-				//TODO: Location fragment
-			//}
+			}
+			else {
+				fragment = new ClassifyLocationInstanceFragment();
+			}
 		}
 		
 		getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();	

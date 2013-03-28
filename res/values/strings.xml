@@ -4,9 +4,9 @@
     <string name="app_name">MachineLearningToolkitTest</string>
     <string name="choose_classifier_text">Choose classifier type:</string>
 
-    <string name="select_classifier_tab">Select classifier</string>
-    <string name="train_classifier_tab">Train classifier</string>
-    <string name="classify_instance_tab">Classify instance</string>
+    <string name="select_classifier_tab">Select</string>
+    <string name="train_classifier_tab">Train</string>
+    <string name="classify_instance_tab">Classify</string>
     <string name="features_title_text">Features:</string>
     <string name="feature_add_button">Add feature</string>
     <string name="classifier_add_button">Finish</string>
@@ -14,6 +14,10 @@
     <string name="activity_walk">Walking</string>
     <string name="activity_sit">Sitting</string>
     <string name="activity_stand">Standing</string>    
+    
+    <string name="location_home">Home</string>
+    <string name="location_work">Work</string>
+    <string name="location_transit">Transit</string>    
 
     <string name="classify_activity_instance_description">This will classify the current sample of your accelerometer readings.</string>
     <string name="classify_activity_result_before">Click on the button to get your activity class.</string>    
@@ -22,6 +26,12 @@
     <string name="classify_activity_result_error">Error sensing the accelerometer or classifying the data.</string>
     <string name="classify_activity_result_classifying">Classifying&#8230;</string>    
     <string name="classify_instance_button">Classify</string>
+    <string name="classify_location_instance_description">This will classify the current sample of your location readings.</string>
+    <string name="classify_location_result_before">Click on the button to get your location class.</string>    
+    <string name="classify_location_result_sensing">Location sensing in progress&#8230;</string>
+    <string name="classify_location_result_sensed">Location sensing completed.</string>
+    <string name="classify_location_result_error">Error sensing the location or classifying the data.</string>
+    <string name="classify_location_result_classifying">Classifying&#8230;</string>    
     
     
     <string name="train_activity_classifier_description">This will train the classifier based on the accelerometer readings. Please select your current activity and press the button.</string>
@@ -34,6 +44,15 @@
     <string name="train_activity_result_error">Error sensing the accelerometer or training the classifier.</string>
     <string name="train_activity_radio_error">Please select your current activity.</string>
     <string name="train_activity_radio_unknown_error">Something went wrong. This activity is not registered.</string>
+    <string name="train_location_classifier_description">This will train the classifier based on the location readings. Please select an option that describes your current location and press the button.</string>
+    <string name="train_location_result_before">Click on the button to train the location classifier.</string>    
+    <string name="train_location_result_sensing">Location sensing in progress&#8230;</string>
+    <string name="train_location_result_sensed">Location sensing completed.</string>
+    <string name="train_location_result_classifying">Classifying&#8230;</string>        
+    <string name="train_location_result_trained">Classifier trained.</string>
+    <string name="train_location_result_error">Error sensing the location or training the classifier.</string>
+    <string name="train_location_radio_error">Please select your current location.</string>
+    <string name="train_location_radio_unknown_error">Something went wrong. The system cannot get your location.</string>
     
 
     <string name="select_classifier_naiveBayes">Naive bayes</string>

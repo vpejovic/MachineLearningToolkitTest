@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/train_location_classifier_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/train_location_classifier_description" />
+
+    <RadioGroup
+        android:id="@+id/location_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"  >
+
+        <RadioButton
+            android:id="@+id/location_home_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/location_home" />
+
+        <RadioButton
+            android:id="@+id/location_work_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/location_work" />
+
+        <RadioButton
+            android:id="@+id/location_transit_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/location_transit" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/train_classifier_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/train_classifier_button" />
+    
+	<TextView
+        android:id="@+id/train_location_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/train_location_result_before" 
+        android:padding="8dp"/>
+
+</LinearLayout>

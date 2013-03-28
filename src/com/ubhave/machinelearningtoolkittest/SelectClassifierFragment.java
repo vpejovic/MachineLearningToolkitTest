@@ -1,12 +1,8 @@
 package com.ubhave.machinelearningtoolkittest;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import com.ubhave.machinelearningtoolkittest.utils.Constants;
 import com.ubhave.mltoolkit.MachineLearningManager;
-import com.ubhave.mltoolkit.classifier.Classifier;
 import com.ubhave.mltoolkit.utils.Feature;
 import com.ubhave.mltoolkit.utils.MLException;
 import com.ubhave.mltoolkit.utils.Signature;
@@ -16,16 +12,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Toast;
 
 public class SelectClassifierFragment extends Fragment {
 
@@ -71,6 +61,7 @@ public class SelectClassifierFragment extends Fragment {
 	            break;
 		}		
 		try {
+			((MainActivity) getActivity()).setClassifierType(state);
 			createClassifier(state);
 		} catch (MLException e) {
 			TextView result = (TextView) getView().findViewById(R.id.select_classifier_result);
@@ -104,11 +95,34 @@ public class SelectClassifierFragment extends Fragment {
 			features.add(z_axis);
 			features.add(activity);
 			Signature signature = new Signature(features, 3);
+			
 			manager.addClassifier(com.ubhave.mltoolkit.utils.Constants.TYPE_NAIVE_BAYES, signature, Constants.CLASSIFIER_ACTIVITY);
+			
+			//manager.addClassifier(com.ubhave.mltoolkit.utils.Constants.TYPE_ZERO_R, signature, Constants.CLASSIFIER_ACTIVITY);
+			
 			TextView result = (TextView) getView().findViewById(R.id.select_classifier_result);
 			result.setText(R.string.select_classifier_result_done);
 		} else if (a_type.equals(Constants.CLASSIFIER_LOCATION)) {
-			// TODO			
+			Feature latitude = new Feature("latitude", Feature.NUMERIC);
+			Feature longitude = new Feature("longitude", Feature.NUMERIC);
+			ArrayList<String> locationValues = new ArrayList<String>();
+			locationValues.add(Constants.LOCATION_HOME);
+			locationValues.add(Constants.LOCATION_WORK);
+			locationValues.add(Constants.LOCATION_TRANSIT);
+			Feature location = new Feature("Location", Feature.NOMINAL, locationValues);
+						
+			ArrayList<Feature> features = new ArrayList<Feature>();		
+			features.add(latitude);
+			features.add(longitude);
+			features.add(location);
+			Signature signature = new Signature(features, 2);
+			
+			//manager.addClassifier(com.ubhave.mltoolkit.utils.Constants.TYPE_NAIVE_BAYES, signature, Constants.CLASSIFIER_ACTIVITY);
+			
+			manager.addClassifier(com.ubhave.mltoolkit.utils.Constants.TYPE_ZERO_R, signature, Constants.CLASSIFIER_LOCATION);
+			
+			TextView result = (TextView) getView().findViewById(R.id.select_classifier_result);
+			result.setText(R.string.select_classifier_result_done);	
 		}
 		
 	}

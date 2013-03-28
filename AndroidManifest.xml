@@ -7,7 +7,12 @@
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="17" />
-
+    
+ 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    
     <application
         android:name=".MLTestApplication"
         android:allowBackup="true"
@@ -23,14 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service
-            android:name="com.ubhave.machinelearningtoolkittest.MLService"
-            android:enabled="true" 
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.ubhave.machinelearningtoolkittest.ML_SERVICE" />
-            </intent-filter>
-        </service>
     </application>
 
 </manifest>

@@ -21,7 +21,7 @@ public class SampleOnceTask extends AsyncTask<Void, Void, SensorData>
 		this.sensorType = sensorType;
 		sensorManager = ESSensorManager.getSensorManager(MLTestApplication.getContext());
 		long millis = 1000;
-        sensorManager.setSensorConfig(sensorType, SensorConfig.SENSE_WINDOW_LENGTH_MILLIS, millis);
+        //sensorManager.setSensorConfig(sensorType, SensorConfig.SENSE_WINDOW_LENGTH_MILLIS, millis);
 	}
 
 	@Override

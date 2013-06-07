@@ -9,6 +9,7 @@ import com.ubhave.mltoolkit.utils.Signature;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +60,9 @@ public class SelectClassifierFragment extends Fragment {
 	        case R.id.select_classifier_location:
 	        	state=Constants.CLASSIFIER_LOCATION;
 	            break;
+	        case R.id.select_classifier_ballgame:
+	        	state=Constants.CLASSIFIER_BALLGAME;
+	            break;	            
 		}		
 		try {
 			((MainActivity) getActivity()).setClassifierType(state);
@@ -120,6 +124,49 @@ public class SelectClassifierFragment extends Fragment {
 			//manager.addClassifier(com.ubhave.mltoolkit.utils.Constants.TYPE_NAIVE_BAYES, signature, Constants.CLASSIFIER_ACTIVITY);
 			
 			manager.addClassifier(com.ubhave.mltoolkit.utils.Constants.TYPE_ZERO_R, signature, Constants.CLASSIFIER_LOCATION);
+			
+			TextView result = (TextView) getView().findViewById(R.id.select_classifier_result);
+			result.setText(R.string.select_classifier_result_done);	
+		} else if (a_type.equals(Constants.CLASSIFIER_BALLGAME)) {
+			
+			Log.d(TAG, "Initializing ballgame classifier");
+			
+			ArrayList<String> outlookValues = new ArrayList<String>();
+			outlookValues.add("sunny");
+			outlookValues.add("overcast");
+			outlookValues.add("rain");
+			Feature outlook = new Feature("outlook", Feature.NOMINAL, outlookValues);
+			
+			ArrayList<String> tempValues = new ArrayList<String>();
+			tempValues.add("hot");
+			tempValues.add("mild");
+			tempValues.add("cool");
+			Feature temp = new Feature("temperature", Feature.NOMINAL, tempValues);
+			
+			ArrayList<String> humidityValues = new ArrayList<String>();
+			humidityValues.add("high");
+			humidityValues.add("normal");			
+			Feature humidity = new Feature("humiditiy", Feature.NOMINAL, humidityValues);
+			
+			ArrayList<String> windValues = new ArrayList<String>();
+			windValues.add("weak");
+			windValues.add("strong");			
+			Feature wind = new Feature("wind", Feature.NOMINAL, windValues);
+			
+			ArrayList<String> playValues = new ArrayList<String>();
+			playValues.add("no");
+			playValues.add("yes");			
+			Feature play = new Feature("play", Feature.NOMINAL, playValues);
+			
+			ArrayList<Feature> features = new ArrayList<Feature>();		
+			features.add(outlook);
+			features.add(temp);
+			features.add(humidity);
+			features.add(wind);
+			features.add(play);
+			Signature signature = new Signature(features, 4);
+			
+			manager.addClassifier(com.ubhave.mltoolkit.utils.Constants.TYPE_ID3, signature, Constants.CLASSIFIER_BALLGAME);
 			
 			TextView result = (TextView) getView().findViewById(R.id.select_classifier_result);
 			result.setText(R.string.select_classifier_result_done);	

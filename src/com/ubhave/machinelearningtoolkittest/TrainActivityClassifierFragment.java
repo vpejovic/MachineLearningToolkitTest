@@ -3,6 +3,8 @@ package com.ubhave.machinelearningtoolkittest;
 
 import com.ubhave.machinelearningtoolkittest.sense.SampleOnceTask;
 import com.ubhave.machinelearningtoolkittest.utils.Constants;
+import com.ubhave.mltoolkit.MachineLearningManager;
+import com.ubhave.mltoolkit.utils.MLException;
 import com.ubhave.mltoolkit.utils.Value;
 import com.ubhave.sensormanager.ESException;
 import com.ubhave.sensormanager.data.SensorData;
@@ -35,7 +37,35 @@ public class TrainActivityClassifierFragment extends Fragment {
 				senseAccelerometer();
 			}
 		});
+		
+		Button save = (Button) view.findViewById(R.id.save_classifiers);
+		save.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				try {
+					saveClassifiers();
+				} catch (MLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
         		
+		Button load = (Button) view.findViewById(R.id.load_classifiers);
+		load.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				try {
+					loadClassifiers();
+				} catch (MLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		
 		return view;
 	}
 	
@@ -127,6 +157,14 @@ public class TrainActivityClassifierFragment extends Fragment {
 				}
 			}
 		}.execute(Constants.CLASSIFIER_ACTIVITY, a_data, classValue);	
+	}
+	
+	private void saveClassifiers() throws MLException {
+		MachineLearningManager.getMLManager(MLTestApplication.getContext()).saveToPersistent();
+	}
+	
+	private void loadClassifiers() throws MLException {
+		MachineLearningManager.getMLManager(MLTestApplication.getContext()).loadFromPersistent();
 	}
 	
 }

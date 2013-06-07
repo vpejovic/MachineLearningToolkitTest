@@ -51,4 +51,18 @@
         android:text="@string/train_activity_result_before" 
         android:padding="8dp"/>
 
+	<Button
+	    android:id="@+id/save_classifiers"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:padding="8dp"
+	    android:text="@string/save_classifiers" />
+	
+	<Button
+	    android:id="@+id/load_classifiers"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:padding="8dp"
+	    android:text="@string/load_classifiers" />
+
 </LinearLayout>

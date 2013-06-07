@@ -53,12 +53,22 @@
     <string name="train_location_result_error">Error sensing the location or training the classifier.</string>
     <string name="train_location_radio_error">Please select your current location.</string>
     <string name="train_location_radio_unknown_error">Something went wrong. The system cannot get your location.</string>
+
+    <string name="train_ballgame_classifier_description">This will train the classifier based on the ID3 example. The input is hardcoded.</string>
+    <string name="train_ballgame_result_before">Click on the button to train the ballgame classifier.</string>    
+    <string name="train_ballgame_result_classifying">Classifying&#8230;</string>        
+    <string name="train_ballgame_result_trained">Classifier trained.</string>
+    <string name="train_ballgame_result_error">Error training the classifier.</string>
     
+	<string name="save_classifiers">Save classifiers</string>
+    <string name="load_classifiers">Load classifiers</string>
+	
 
     <string name="select_classifier_naiveBayes">Naive bayes</string>
     <string name="select_classifier_bayesNet">Bayes net</string>
     <string name="select_classifier_activity">Activity classifier</string>
-    <string name="select_classifier_location">Location classifier</string>    
+    <string name="select_classifier_location">Location classifier</string> 
+    <string name="select_classifier_ballgame">Ballgame classifier</string>        
     <string name="select_classifier_button">Select this classifier</string>
     <string name="select_classifier_result_before">Select a classifier and click the button to instantiate it.</string>
     <string name="select_classifier_result_instantiated">Classifier already instantiated.</string>

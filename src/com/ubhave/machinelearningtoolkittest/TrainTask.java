@@ -25,9 +25,13 @@ public class TrainTask extends AsyncTask<Object, Void, Boolean> {
 	@Override
 	protected Boolean doInBackground(Object... params) {
 		
+		Log.d(TAG, "Training classifier...");
+
 		String classifierName = (String) params[0];
 		SensorData data = (SensorData) params[1];
 		Value label = (Value) params[2]; 
+		
+		Log.d(TAG, "Training classifier pass...");
 
 		MachineLearningManager manager;
 		
@@ -38,10 +42,229 @@ public class TrainTask extends AsyncTask<Object, Void, Boolean> {
 			
 			Classifier classifier = manager.getClassifier(classifierName);	
 			
-			if (classifier == null) return false;
+			if (classifier == null) {
+				Log.d(TAG, "Classifier is null");	
+				return false;
+			}
 			
-			if (data != null)
+			if (true) //data != null)
 			{
+				
+				Log.d(TAG, "Training classifier with name "+classifierName);
+				
+				if (classifierName == Constants.CLASSIFIER_BALLGAME) {
+					
+					Log.d(TAG, "Training ballgame classifier");
+					
+					ArrayList<Instance> instances = new ArrayList<Instance>();
+					
+					ArrayList<Value> instanceValues;
+					Value outlook, temp, humidity, wind, play;	
+					Instance instance;
+					
+					outlook = new Value("sunny", Value.NOMINAL_VALUE);
+					temp = new Value("hot", Value.NOMINAL_VALUE);
+					humidity = new Value("high", Value.NOMINAL_VALUE);
+					wind = new Value("weak", Value.NOMINAL_VALUE);
+					play = new Value("no", Value.NOMINAL_VALUE);
+					instanceValues = new ArrayList<Value>();
+					instanceValues.add(outlook);
+					instanceValues.add(temp);
+					instanceValues.add(humidity);
+					instanceValues.add(wind);	
+					instanceValues.add(play);		
+					instance = new Instance(instanceValues);
+					instances.add(instance);
+					
+					outlook = new Value("sunny", Value.NOMINAL_VALUE);
+					temp = new Value("hot", Value.NOMINAL_VALUE);
+					humidity = new Value("high", Value.NOMINAL_VALUE);
+					wind = new Value("strong", Value.NOMINAL_VALUE);
+					play = new Value("no", Value.NOMINAL_VALUE);
+					instanceValues = new ArrayList<Value>();
+					instanceValues.add(outlook);
+					instanceValues.add(temp);
+					instanceValues.add(humidity);
+					instanceValues.add(wind);	
+					instanceValues.add(play);		
+					instance = new Instance(instanceValues);
+					instances.add(instance);
+					
+					outlook = new Value("overcast", Value.NOMINAL_VALUE);
+					temp = new Value("hot", Value.NOMINAL_VALUE);
+					humidity = new Value("high", Value.NOMINAL_VALUE);
+					wind = new Value("weak", Value.NOMINAL_VALUE);
+					play = new Value("yes", Value.NOMINAL_VALUE);
+					instanceValues = new ArrayList<Value>();
+					instanceValues.add(outlook);
+					instanceValues.add(temp);
+					instanceValues.add(humidity);
+					instanceValues.add(wind);	
+					instanceValues.add(play);		
+					instance = new Instance(instanceValues);
+					instances.add(instance);
+					
+					outlook = new Value("rain", Value.NOMINAL_VALUE);
+					temp = new Value("mild", Value.NOMINAL_VALUE);
+					humidity = new Value("high", Value.NOMINAL_VALUE);
+					wind = new Value("weak", Value.NOMINAL_VALUE);
+					play = new Value("yes", Value.NOMINAL_VALUE);
+					instanceValues = new ArrayList<Value>();
+					instanceValues.add(outlook);
+					instanceValues.add(temp);
+					instanceValues.add(humidity);
+					instanceValues.add(wind);	
+					instanceValues.add(play);		
+					instance = new Instance(instanceValues);
+					instances.add(instance);
+					
+					outlook = new Value("rain", Value.NOMINAL_VALUE);
+					temp = new Value("cool", Value.NOMINAL_VALUE);
+					humidity = new Value("normal", Value.NOMINAL_VALUE);
+					wind = new Value("weak", Value.NOMINAL_VALUE);
+					play = new Value("yes", Value.NOMINAL_VALUE);
+					instanceValues = new ArrayList<Value>();
+					instanceValues.add(outlook);
+					instanceValues.add(temp);
+					instanceValues.add(humidity);
+					instanceValues.add(wind);	
+					instanceValues.add(play);		
+					instance = new Instance(instanceValues);
+					instances.add(instance);
+					
+					outlook = new Value("rain", Value.NOMINAL_VALUE);
+					temp = new Value("cool", Value.NOMINAL_VALUE);
+					humidity = new Value("normal", Value.NOMINAL_VALUE);
+					wind = new Value("strong", Value.NOMINAL_VALUE);
+					play = new Value("no", Value.NOMINAL_VALUE);
+					instanceValues = new ArrayList<Value>();
+					instanceValues.add(outlook);
+					instanceValues.add(temp);
+					instanceValues.add(humidity);
+					instanceValues.add(wind);	
+					instanceValues.add(play);		
+					instance = new Instance(instanceValues);
+					instances.add(instance);
+					
+					outlook = new Value("overcast", Value.NOMINAL_VALUE);
+					temp = new Value("cool", Value.NOMINAL_VALUE);
+					humidity = new Value("normal", Value.NOMINAL_VALUE);
+					wind = new Value("strong", Value.NOMINAL_VALUE);
+					play = new Value("yes", Value.NOMINAL_VALUE);
+					instanceValues = new ArrayList<Value>();
+					instanceValues.add(outlook);
+					instanceValues.add(temp);
+					instanceValues.add(humidity);
+					instanceValues.add(wind);	
+					instanceValues.add(play);		
+					instance = new Instance(instanceValues);
+					instances.add(instance);
+					
+					outlook = new Value("sunny", Value.NOMINAL_VALUE);
+					temp = new Value("mild", Value.NOMINAL_VALUE);
+					humidity = new Value("high", Value.NOMINAL_VALUE);
+					wind = new Value("weak", Value.NOMINAL_VALUE);
+					play = new Value("no", Value.NOMINAL_VALUE);
+					instanceValues = new ArrayList<Value>();
+					instanceValues.add(outlook);
+					instanceValues.add(temp);
+					instanceValues.add(humidity);
+					instanceValues.add(wind);	
+					instanceValues.add(play);		
+					instance = new Instance(instanceValues);
+					instances.add(instance);
+					
+					outlook = new Value("sunny", Value.NOMINAL_VALUE);
+					temp = new Value("cool", Value.NOMINAL_VALUE);
+					humidity = new Value("normal", Value.NOMINAL_VALUE);
+					wind = new Value("weak", Value.NOMINAL_VALUE);
+					play = new Value("yes", Value.NOMINAL_VALUE);
+					instanceValues = new ArrayList<Value>();
+					instanceValues.add(outlook);
+					instanceValues.add(temp);
+					instanceValues.add(humidity);
+					instanceValues.add(wind);	
+					instanceValues.add(play);		
+					instance = new Instance(instanceValues);
+					instances.add(instance);
+					
+					outlook = new Value("rain", Value.NOMINAL_VALUE);
+					temp = new Value("mild", Value.NOMINAL_VALUE);
+					humidity = new Value("normal", Value.NOMINAL_VALUE);
+					wind = new Value("weak", Value.NOMINAL_VALUE);
+					play = new Value("yes", Value.NOMINAL_VALUE);
+					instanceValues = new ArrayList<Value>();
+					instanceValues.add(outlook);
+					instanceValues.add(temp);
+					instanceValues.add(humidity);
+					instanceValues.add(wind);	
+					instanceValues.add(play);		
+					instance = new Instance(instanceValues);
+					instances.add(instance);
+					
+					outlook = new Value("sunny", Value.NOMINAL_VALUE);
+					temp = new Value("mild", Value.NOMINAL_VALUE);
+					humidity = new Value("normal", Value.NOMINAL_VALUE);
+					wind = new Value("strong", Value.NOMINAL_VALUE);
+					play = new Value("yes", Value.NOMINAL_VALUE);
+					instanceValues = new ArrayList<Value>();
+					instanceValues.add(outlook);
+					instanceValues.add(temp);
+					instanceValues.add(humidity);
+					instanceValues.add(wind);	
+					instanceValues.add(play);		
+					instance = new Instance(instanceValues);
+					instances.add(instance);
+					
+					outlook = new Value("overcast", Value.NOMINAL_VALUE);
+					temp = new Value("mild", Value.NOMINAL_VALUE);
+					humidity = new Value("high", Value.NOMINAL_VALUE);
+					wind = new Value("strong", Value.NOMINAL_VALUE);
+					play = new Value("yes", Value.NOMINAL_VALUE);
+					instanceValues = new ArrayList<Value>();
+					instanceValues.add(outlook);
+					instanceValues.add(temp);
+					instanceValues.add(humidity);
+					instanceValues.add(wind);	
+					instanceValues.add(play);		
+					instance = new Instance(instanceValues);
+					instances.add(instance);
+					
+					outlook = new Value("overcast", Value.NOMINAL_VALUE);
+					temp = new Value("hot", Value.NOMINAL_VALUE);
+					humidity = new Value("normal", Value.NOMINAL_VALUE);
+					wind = new Value("weak", Value.NOMINAL_VALUE);
+					play = new Value("yes", Value.NOMINAL_VALUE);
+					instanceValues = new ArrayList<Value>();
+					instanceValues.add(outlook);
+					instanceValues.add(temp);
+					instanceValues.add(humidity);
+					instanceValues.add(wind);	
+					instanceValues.add(play);		
+					instance = new Instance(instanceValues);
+					instances.add(instance);
+					
+					outlook = new Value("rain", Value.NOMINAL_VALUE);
+					temp = new Value("mild", Value.NOMINAL_VALUE);
+					humidity = new Value("high", Value.NOMINAL_VALUE);
+					wind = new Value("strong", Value.NOMINAL_VALUE);
+					play = new Value("no", Value.NOMINAL_VALUE);
+					instanceValues = new ArrayList<Value>();
+					instanceValues.add(outlook);
+					instanceValues.add(temp);
+					instanceValues.add(humidity);
+					instanceValues.add(wind);	
+					instanceValues.add(play);		
+					instance = new Instance(instanceValues);
+					instances.add(instance);
+					
+					classifier.train(instances);
+					
+					classifier.printClassifierInfo();
+					
+					outcome = true;
+				}
+				
 				if (classifierName == Constants.CLASSIFIER_ACTIVITY) {
 					ArrayList<float[]> readings = ((AccelerometerData)data).getSensorReadings();
 									

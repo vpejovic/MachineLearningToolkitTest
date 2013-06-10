@@ -85,8 +85,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			if (activeClassifier.equals(Constants.CLASSIFIER_ACTIVITY)){
 				fragment = new ClassifyActivityInstanceFragment();
 			}
-			else {
+			else if (activeClassifier.equals(Constants.CLASSIFIER_LOCATION)){
 				fragment = new ClassifyLocationInstanceFragment();
+			}
+			else if (activeClassifier.equals(Constants.CLASSIFIER_BALLGAME)){
+				fragment = new ClassifyBallgameInstanceFragment();
 			}
 		}
 		

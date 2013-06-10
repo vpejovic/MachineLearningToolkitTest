@@ -19,12 +19,18 @@
     <string name="location_work">Work</string>
     <string name="location_transit">Transit</string>    
 
-    <string name="classify_activity_instance_description">This will classify the current sample of your accelerometer readings.</string>
+    <string name="classify_activity_instance_description">This will classify the current sample of your accelerometer readings.</string>    
     <string name="classify_activity_result_before">Click on the button to get your activity class.</string>    
     <string name="classify_activity_result_sensing">Accelerometer sensing in progress&#8230;</string>
     <string name="classify_activity_result_sensed">Accelerometer sensing completed.</string>
     <string name="classify_activity_result_error">Error sensing the accelerometer or classifying the data.</string>
-    <string name="classify_activity_result_classifying">Classifying&#8230;</string>    
+    <string name="classify_activity_result_classifying">Classifying&#8230;</string>
+    
+    <string name="classify_ballgame_instance_description">This will classify the selected features to PLAY or DON\'T PLAY ball today.</string>
+    <string name="classify_ballgame_result_before">Click on the button to find out if you should play ball today.</string>    
+    <string name="classify_ballgame_result_error">Error classifying the data.</string>
+    <string name="classify_ballgame_result_classifying">Classifying&#8230;</string>    
+    
     <string name="classify_instance_button">Classify</string>
     <string name="classify_location_instance_description">This will classify the current sample of your location readings.</string>
     <string name="classify_location_result_before">Click on the button to get your location class.</string>    
@@ -74,6 +80,32 @@
     <string name="select_classifier_result_instantiated">Classifier already instantiated.</string>
     <string name="select_classifier_result_done">Instantiation done.</string>
  
+    <string name="outlook">Outlook</string>
+    <string name="temp">Temperature</string>
+    <string name="humidity">Humidity</string>
+    <string name="wind">Wind</string>
+    
+    <string-array name="outlook_array">
+        <item>sunny</item>
+        <item>overcast</item>
+        <item>rain</item>        
+    </string-array>
+
+    <string-array name="temp_array">
+        <item>hot</item>
+        <item>mild</item>
+        <item>cool</item>        
+    </string-array>
+    
+    <string-array name="humidity_array">
+        <item>high</item>
+        <item>normal</item>
+    </string-array>
+    
+    <string-array name="wind_array">
+        <item>weak</item>
+        <item>strong</item>
+    </string-array>    
     
     <string-array name="classifiers_list">
         <item>Naive Bayes</item>
